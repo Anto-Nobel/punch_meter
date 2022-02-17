@@ -5,11 +5,11 @@ int16_t AcX, AcY, AcZ, Tmp, GyX, GyY, GyZ;
 
 void setup()
 {
-  Serial.begin(460800);
+  Serial.begin(115200);
   Wire.begin(4,5,100000); //sda,scl,clock 
   Wire.beginTransmission(MPU_ADDR);
   Wire.write(0x6B);
-  Wire.write(0);
+  Wire.write(0x00);
   Wire.endTransmission(true); 
   Serial.println("Setup Complete");
 }
