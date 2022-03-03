@@ -5,8 +5,8 @@ const int MPU_addr = 0x68;
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("Press any key");
-    while(Serial.available()==0);
+    //Serial.println("Press any key");
+    //while(Serial.available()==0);
     Wire.begin(4,5,100000);
     Wire.beginTransmission(MPU_addr);
     Wire.write(0x6B);
@@ -45,6 +45,7 @@ void loop()
     Serial.print(" ");
     Serial.print(YGyroFinal);
     Serial.print(" ");
-    Serial.print(ZGyroFinal);
+    Serial.print(ZGyroFinal); 
+    Serial.println("");
     delay(100);
 }
