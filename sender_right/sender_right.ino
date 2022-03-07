@@ -23,7 +23,7 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(460800);
     Wire.begin(4, 5, 100000);
     Wire.beginTransmission(MPU_addr);
     Wire.write(0x6B);
