@@ -28,6 +28,7 @@ void setup()
 {
     Serial.begin(115200); 
     WiFi.mode(WIFI_STA); 
+    esp_now_init();
     esp_now_register_recv_cb(OnDataRecv);
 }
 

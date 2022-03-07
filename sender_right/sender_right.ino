@@ -117,7 +117,7 @@ void loop()
     right.gX=XGyroFinal;
     right.gY=YGyroFinal;
     right.gZ=ZGyroFinal; 
-    esp_err_t result = esp_now_send(broadcastAddress,&right,sizeof(right));
+    esp_err_t result = esp_now_send(broadcastAddress,(uint8_t *)&right,sizeof(right));
     if(result==ESP_OK)
     {
         Serial.println("Sent with success");
@@ -125,5 +125,5 @@ void loop()
     else{
         Serial.println("Error sending the data");
     }
-    delay(2000);
+    //delay(2000);
 }
