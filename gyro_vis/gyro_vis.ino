@@ -1,4 +1,4 @@
-#include <Wire.h>;
+ #include <Wire.h>;
 
 const int MPU_addr = 0x68;
 

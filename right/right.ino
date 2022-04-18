@@ -1,25 +1,7 @@
 #include <Wire.h>
 #include <esp_now.h>
-#include <WiFi.h>
-
-uint8_t broadcastAddress[] = {0xFC,0xF5,0xC4,0x0F,0x84,0x2C};
 
 const int MPU_addr = 0x68;
-
-typedef struct readings
-{
-    float aX, aY, aZ, gX, gY, gZ;
-} readings;
-
-readings right;
-
-esp_now_peer_info_t peerInfo;
-
-void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status)
-{
-    Serial.print("\r\nLast Packet Send Status:\t");
-    Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
-}
 
 void setup()
 {
@@ -38,25 +20,7 @@ void setup()
     Wire.write(0x1C);
     Wire.write(0x00);
     Wire.endTransmission(true);
-
-    WiFi.mode(WIFI_STA);
-    if (esp_now_init() != ESP_OK)
-    {
-        Serial.println("Error initializing esp now");
-        return;
-    }
-
-    esp_now_register_send_cb(OnDataSent);
-
-    memcpy(peerInfo.peer_addr, broadcastAddress, 6);
-    peerInfo.channel = 0;
-    peerInfo.encrypt = false;
-
-    if (esp_now_add_peer(&peerInfo) != ESP_OK)
-    {
-        Serial.println("Failed to add peer");
-        return;
-    }
+    //digitalWrite(17, HIGH);
 }
 
 void loop()
@@ -110,20 +74,18 @@ void loop()
     Serial.println(" deg/s");
     Serial.print("Z Axis = ");
     Serial.print(ZGyroFinal);
-    Serial.println(" deg/s");*/ 
-    right.aX=XAxisFinal;
-    right.aY=YAxisFinal;
-    right.aZ=ZAxisFinal;
-    right.gX=XGyroFinal;
-    right.gY=YGyroFinal;
-    right.gZ=ZGyroFinal; 
-    esp_err_t result = esp_now_send(broadcastAddress,(uint8_t *)&right,sizeof(right));
-    if(result==ESP_OK)
-    {
-        Serial.println("Sent with success");
-    }
-    else{
-        Serial.println("Error sending the data");
-    }
-    //delay(2000);
+    Serial.println(" deg/s");*/
+        Serial.print(XAxisFinal);
+        Serial.print(" ");
+        Serial.print(YAxisFinal);
+        Serial.print(" ");
+        Serial.print(ZAxisFinal);
+        Serial.print(" ");
+        Serial.print(XGyroFinal);
+        Serial.print(" ");
+        Serial.print(YGyroFinal);
+        Serial.print(" ");
+        Serial.println(ZGyroFinal);
+        //Serial.print("\n");
+    delay(1);
 }
