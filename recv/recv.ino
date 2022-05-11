@@ -11,17 +11,17 @@ readings right;
 void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) { 
     memcpy(&right,incomingData,sizeof(right)); 
     Serial.print(right.aX); 
-    Serial.print(",");
+    Serial.print(" ");
     Serial.print(right.aY); 
-    Serial.print(",");
+    Serial.print(" ");
     Serial.print(right.aZ); 
-    Serial.print(",");
+    Serial.print(" ");
     Serial.print(right.gX); 
-    Serial.print(",");
+    Serial.print(" ");
     Serial.print(right.gY); 
-    Serial.print(",");
+    Serial.print(" ");
     Serial.print(right.gZ); 
-    Serial.print("\n");
+    Serial.println(" ");
     delay(100);
 }
 
