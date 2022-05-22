@@ -1,4 +1,24 @@
 #include <Wire.h>;
+#include <WiFiMulti.h>
+WiFiMulti wifiMulti;
+#define DEVICE "right"
+
+#include <InfluxDbClient.h>
+#include <InfluxDbCloud.h>
+#include <MQUnifiedsensor.h>
+
+#define WIFI_SSID "nobel"
+#define WIFI_PASSWORD "sarobert"
+
+//InfluxDB
+#define INFLUXDB_URL "https://europe-west1-1.gcp.cloud2.influxdata.com"
+#define INFLUXDB_TOKEN "KlmcztU1dEWZ04JzoiK3eg2eBtZxH-LbbYauBEH0UGpdmfjqxGvwIpaAIXv8EqTwIiXD-Hs0O3Konu3NjyrQfA=="
+#define INFLUXDB_ORG "nobel2002@gmail.com"
+#define INFLUXDB_BUCKET "nobel2002's Bucket"
+#define TZ_INFO "IST"
+
+InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);
+Point right_accX("right");
 
 const int MPU_addr = 0x68;
 
