@@ -7,7 +7,7 @@ void setup()
     Serial.begin(115200);
     //Serial.println("Press any key");
     //while(Serial.available()==0);
-    Wire.begin(4,5,100000);
+    Wire.begin(4,5,115200);
     Wire.beginTransmission(MPU_addr);
     Wire.write(0x6B);
     Wire.write(0x00);

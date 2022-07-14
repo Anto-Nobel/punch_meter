@@ -22,12 +22,12 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
     Serial.print(" ");
     Serial.print(right.gZ); 
     Serial.println(" ");
-    delay(100);
+    //delay(100);
 }
 
 void setup()
 {
-    Serial.begin(460800); 
+    Serial.begin(9600); 
     WiFi.mode(WIFI_STA); 
     esp_now_init();
     esp_now_register_recv_cb(OnDataRecv);

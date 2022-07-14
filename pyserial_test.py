@@ -7,7 +7,7 @@ from os import listdir
 import math
 
 
-ser = serial.Serial('/dev/ttyUSB0', 460800)
+ser = serial.Serial('/dev/ttyUSB0', 9600)
 time.sleep(10)
 for _ in range(100):
     line = ser.readline()
