@@ -7,7 +7,7 @@ from os import listdir
 import math
 
 
-ser = serial.Serial('/dev/ttyUSB0', 9600)
+ser = serial.Serial('/dev/ttyUSB0', 57600)
 time.sleep(10)
 for _ in range(100):
     line = ser.readline()
@@ -17,14 +17,15 @@ for _ in range(100):
 
 df = pd.DataFrame(columns=['acc_X', 'acc_Y', 'acc_Z','gyro_X', 'gyro_Y', 'gyro_Z', 'acc'])
 new_row = {}
-for _ in range(300*5):
+while True:
     line = ser.readline()
     data = line.decode()
     data.replace("`", " ")
-    datapoints = list(map(float, data.split()))
+    datapoints = data.split()
     #datapoints=[int(x) for x in datapoints]
     if len(datapoints) == 6:
         # print(datapoints)
+        datapoints=[float(x) for x in datapoints]
         new_row['acc_X'] = [datapoints[0]]
         new_row['acc_Y'] = [datapoints[1]]
         new_row['acc_Z'] = [datapoints[2]]
@@ -38,5 +39,5 @@ for _ in range(300*5):
         print(new_row)
     time.sleep(0.001)
 print(df.head())
-df.to_csv('jabstop.csv')
+df.to_csv('./data/combo0.csv')
 ser.close()

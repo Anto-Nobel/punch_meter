@@ -27,7 +27,7 @@ void OnDataRecv(const uint8_t * mac, const uint8_t *incomingData, int len) {
 
 void setup()
 {
-    Serial.begin(9600); 
+    Serial.begin(57600); 
     WiFi.mode(WIFI_STA); 
     esp_now_init();
     esp_now_register_recv_cb(OnDataRecv);
