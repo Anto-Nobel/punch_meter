@@ -1,3 +1,4 @@
+! conda activate kaggle
 from threading import Thread
 import serial
 import time
@@ -30,13 +31,14 @@ class serialPlot:
         self.thread = None
         self.plotTimer = 0
         self.previousTimer = 0
-
-        print('Trying to connect to: ' + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
-        try:
-            self.serialConnection = serial.Serial(serialPort, serialBaud, timeout=4)
-            print('Connected to ' + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
-        except:
-            print("Failed to connect with " + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
+        self.serialConnection = None
+        while(self.serialConnection==None):
+            print('Trying to connect to: ' + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
+            try:
+                self.serialConnection = serial.Serial(serialPort, serialBaud, timeout=4)
+                print('Connected to ' + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
+            except:
+                print("Failed to connect with " + str(serialPort) + ' at ' + str(serialBaud) + ' BAUD.')
 
     def readSerialStart(self):
         if self.thread == None:
